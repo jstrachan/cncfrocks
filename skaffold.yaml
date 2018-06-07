@@ -3,7 +3,7 @@ kind: Config
 build:
   tagPolicy:
     envTemplate:
-      template: "{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST}}:{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT}}/jstrachan/cncfrocks:{{.VERSION}}"
+      template: "{{.DOCKER_REGISTRY}}/jstrachan/cncfrocks:{{.VERSION}}"
   artifacts:
   - imageName: changeme
     workspace: .
@@ -17,7 +17,7 @@ profiles:
   build:
     tagPolicy:
       envTemplate:
-        template: "{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST}}:{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT}}/jstrachan/cncfrocks:{{.DIGEST_HEX}}"
+        template: "{{.DOCKER_REGISTRY}}/jstrachan/cncfrocks:{{.DIGEST_HEX}}"
     artifacts:
     - docker: {}
     local: {}
@@ -27,6 +27,6 @@ profiles:
       - name: cncfrocks
         chartPath: charts/cncfrocks
         setValueTemplates:
-          image.repository: "{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST}}:{{.JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT}}/jstrachan/cncfrocks"
+          image.repository: "{{.DOCKER_REGISTRY}}/jstrachan/cncfrocks"
           image.tag: "{{.TAG}}"
         
